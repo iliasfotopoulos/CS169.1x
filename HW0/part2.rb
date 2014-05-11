@@ -19,7 +19,6 @@ def binary_multiple_of_4?(s)
 	regex = /^([10]*00|[0])$/ #regex multiply of 4
 
 	if s =~ /^[0-1]+$/
-		puts "Valid number"
 		return !!(s =~ regex)
 	else
 		return false
