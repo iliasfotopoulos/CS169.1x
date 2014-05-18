@@ -40,7 +40,7 @@ describe 'word count' do
   end
 end
 
-describe 'anagram grouping', :pending => true do
+describe 'anagram grouping' do
   describe 'sanity checks' do
     it 'should work on the empty string [5 points]' do
       ''.anagram_groups.should == []
