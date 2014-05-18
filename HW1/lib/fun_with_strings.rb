@@ -15,24 +15,8 @@ module FunWithStrings
     return h
   end
 
-  def count_chars
-    h = Hash.new(0)
-
-    self.each_char do |char|
-      h[char] += 1
-    end
-
-    return h
-  end
-
-  def anagram_strings(a,b)
-    h1 = count_chars(a)
-    h2 = count_chars(b)
-    return h1 == h2
-  end
-
   def anagram_groups
-    words = self.split(" ")
+    self.downcase.split.group_by {|word| word.downcase.chars.sort }.values
   end
 end
 
