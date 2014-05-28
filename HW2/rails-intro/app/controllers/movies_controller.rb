@@ -9,10 +9,14 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.pluck(:rating).uniq
 
-    sort = params[:sort] ? params[:sort] : "id"
-    @ratings_checked = params[:ratings].nil? ? @all_ratings : params[:ratings].keys
+    #if session not initialized, initialize using defaults
+    session[:sort] ||= "id"
+    session[:ratings] ||= @all_ratings
 
-    @movies = Movie.where('rating IN (?)', @ratings_checked).order(sort)
+    session[:sort] = params[:sort] unless params[:sort].nil?
+    session[:ratings] = params[:ratings].keys unless params[:ratings].nil?
+
+    @movies = Movie.where('rating IN (?)', session[:ratings]).order(session[:sort])
   end
 
   def new
